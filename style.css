@@ -65,12 +65,12 @@ text-transform:lowercase;
 
 .art-wrapper{
 position:relative;
-width:min(78vw,700px);
-height:min(70vw,62vh);
+width:min(68vw,620px);
+height:min(60vw,54vh);
 display:flex;
 justify-content:center;
 align-items:center;
-transform:translateY(-2vh);
+transform:translateY(2vh);
 overflow:hidden;
 border-radius:28px;
 }
@@ -326,5 +326,14 @@ body.glitch-scene .observer-ticker{
   .art-wrapper{
     width:88vw !important;
     height:72vw !important;
+  }
+}
+
+
+@media (max-width:650px){
+  .art-wrapper{
+    width:80vw !important;
+    height:68vw !important;
+    transform:translateY(3vh) !important;
   }
 }
