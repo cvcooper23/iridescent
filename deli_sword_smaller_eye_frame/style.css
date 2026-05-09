@@ -1,0 +1,330 @@
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+overflow:hidden;
+background:#040006;
+color:white;
+font-family:Garamond, Georgia, serif;
+min-height:100vh;
+}
+
+.background-art{
+position:fixed;
+inset:-5vmax;
+background:url("eye.png") center/cover no-repeat;
+filter:blur(34px) brightness(.34) saturate(1.45);
+transform:scale(1.14);
+animation:drift 18s ease-in-out infinite alternate;
+}
+
+.noise{
+position:fixed;
+inset:0;
+opacity:.12;
+pointer-events:none;
+background-image:
+linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+background-size:6px 6px;
+}
+
+.scanlines{
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.14;
+background:repeating-linear-gradient(
+to bottom,
+rgba(255,255,255,.03),
+rgba(255,255,255,.03) 1px,
+transparent 1px,
+transparent 4px
+);
+}
+
+.stage{
+position:relative;
+display:grid;
+place-items:center;
+min-height:100vh;
+padding:2rem;
+}
+
+.topline{
+position:absolute;
+top:2rem;
+letter-spacing:.32rem;
+font-size:.72rem;
+opacity:.58;
+text-transform:lowercase;
+}
+
+.art-wrapper{
+position:relative;
+width:min(78vw,700px);
+height:min(70vw,62vh);
+display:flex;
+justify-content:center;
+align-items:center;
+transform:translateY(-2vh);
+overflow:hidden;
+border-radius:28px;
+}
+
+.main-art{
+width:140%;
+max-width:none;
+margin-left:-8%;
+margin-top:-10%;
+border-radius:28px;
+box-shadow:0 0 70px rgba(103,233,255,.16);
+animation:float 7s ease-in-out infinite;
+display:block;
+transition:filter .5s ease, transform .5s ease;
+transform:scale(1.55);
+transform-origin:center center;
+}
+
+.main-art.glitching{
+filter:hue-rotate(25deg) saturate(1.2) contrast(1.08);
+transform:scale(1.62);
+}
+
+.hidden-eye{
+position:absolute;
+width:30%;
+height:26%;
+left:39%;
+top:39%;
+border:none;
+background:transparent;
+cursor:pointer;
+opacity:0;
+z-index:5;
+}
+
+.copy{
+position:absolute;
+bottom:10vh;
+text-align:center;
+}
+
+h1{
+position:relative;
+margin:0;
+font-size:clamp(3rem,10vw,7rem);
+letter-spacing:.08em;
+font-weight:normal;
+text-shadow:0 0 22px rgba(255,255,255,.25);
+transition:.3s ease;
+}
+
+h1.glitch-active{
+text-shadow:
+-2px 0 cyan,
+2px 0 magenta,
+0 0 22px rgba(255,255,255,.25);
+}
+
+.lyric-box{
+margin:1rem auto;
+padding:1rem;
+width:min(90vw,520px);
+border:1px solid rgba(255,255,255,.18);
+border-radius:18px;
+background:rgba(0,0,0,.28);
+backdrop-filter:blur(8px);
+}
+
+#statusText{
+margin:0;
+font-size:clamp(1rem,3vw,1.45rem);
+letter-spacing:.04em;
+text-transform:lowercase;
+opacity:.82;
+}
+
+.release{
+margin-top:.7rem;
+letter-spacing:.18em;
+opacity:.72;
+}
+
+.observer-ticker{
+margin-top:1rem;
+font-size:.82rem;
+letter-spacing:.12em;
+opacity:.6;
+text-transform:lowercase;
+animation:pulse 4s ease-in-out infinite;
+}
+
+.cursor-spark{
+position:fixed;
+width:9px;
+height:9px;
+border-radius:50%;
+pointer-events:none;
+background:white;
+box-shadow:0 0 16px rgba(166,215,255,.9);
+animation:fade .7s ease forwards;
+z-index:20;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(-8px)}
+50%{transform:translateY(-24px)}
+}
+
+@keyframes fade{
+from{opacity:.9;transform:scale(1)}
+to{opacity:0;transform:scale(3)}
+}
+
+@keyframes pulse{
+0%,100%{opacity:.45}
+50%{opacity:.82}
+}
+
+@keyframes drift{
+from{transform:scale(1.14) translate(-1%,-1%)}
+to{transform:scale(1.2) translate(1%,1%)}
+}
+
+@media (max-width:650px){
+
+.art-wrapper{
+width:96vw;
+transform:translateY(-1vh);
+}
+
+.copy{
+bottom:14vh;
+}
+
+.hidden-eye{
+width:24%;
+height:22%;
+left:38%;
+top:39%;
+}
+}
+
+
+
+  50% { filter: brightness(1.18) saturate(1.25); }
+}
+
+
+/* tasteful full-scene glitch after eye activation */
+
+body.glitch-scene {
+  animation: scenePulse 5s ease-in-out infinite;
+}
+
+body.glitch-scene .background-art {
+  animation:
+    drift 18s ease-in-out infinite alternate,
+    bgGlitch 5s infinite;
+}
+
+body.glitch-scene .main-art {
+  filter:
+    hue-rotate(12deg)
+    saturate(1.15)
+    contrast(1.05);
+}
+
+body.glitch-scene h1 {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.95),
+    rgba(132,244,255,.95),
+    rgba(219,170,255,.95),
+    rgba(255,175,228,.95),
+    rgba(255,255,255,.95)
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:
+    shimmer 4s ease-in-out infinite,
+    titleGlitch 5s infinite;
+  position:relative;
+}
+
+body.glitch-scene h1::before,
+body.glitch-scene h1::after{
+  content:"Iridescent";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.24;
+}
+
+body.glitch-scene h1::before{
+  color:rgba(90,255,255,.55);
+  transform:translateX(-2px);
+  clip-path:inset(0 0 52% 0);
+}
+
+body.glitch-scene h1::after{
+  color:rgba(255,100,220,.45);
+  transform:translateX(2px);
+  clip-path:inset(48% 0 0 0);
+}
+
+body.glitch-scene .lyric-box{
+  border-color:rgba(170,240,255,.24);
+  box-shadow:0 0 26px rgba(120,244,255,.08);
+}
+
+body.glitch-scene .observer-ticker{
+  letter-spacing:.16em;
+}
+
+@keyframes shimmer{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@keyframes bgGlitch{
+  0%,100%{filter:blur(34px) brightness(.34) saturate(1.45)}
+  8%{transform:scale(1.2) translate(1px,-1px)}
+  9%{transform:scale(1.2) translate(-2px,1px)}
+  10%{transform:scale(1.2)}
+  52%{filter:blur(36px) brightness(.38) saturate(1.6)}
+}
+
+@keyframes titleGlitch{
+  0%,100%{transform:translateX(0)}
+  7%{transform:translateX(-1px)}
+  8%{transform:translateX(2px)}
+  9%{transform:translateX(0)}
+  61%{transform:translateX(1px)}
+  62%{transform:translateX(-2px)}
+  63%{transform:translateX(0)}
+}
+
+@keyframes scenePulse{
+  0%,100%{
+    filter:saturate(1) brightness(1);
+  }
+  50%{
+    filter:saturate(1.08) brightness(1.02);
+  }
+}
+
+
+@media (max-width:650px){
+  .art-wrapper{
+    width:88vw !important;
+    height:72vw !important;
+  }
+}
