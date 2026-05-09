@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>observer calibration</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="background-art"></div>
+<div class="noise"></div>
+<div class="scanlines"></div>
+<div class="veil" id="veil"></div>
+
+<main class="stage">
+
+<p class="topline">observer connection unstable</p>
+
+<div class="art-wrapper" id="holdTarget">
+  <img src="eye.png" class="main-art" id="mainArt" alt="Iridescent artwork" />
+  <div class="hold-ring" id="holdRing"></div>
+</div>
+
+<section class="copy">
+  <h1>Iridescent</h1>
+
+  <div class="lyric-box">
+    <p id="statusText">touch and hold to calibrate</p>
+  </div>
+
+  <div class="observer-ticker">
+    <span id="observerCount">127 observers connected</span>
+  </div>
+</section>
+
+<audio id="oceanPlayer" preload="auto" loop src="Ocean.mp3"></audio>
+
+<script src="script.js"></script>
+
+</main>
+</body>
+</html>
